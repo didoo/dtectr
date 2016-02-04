@@ -1,0 +1,32 @@
+// ==========================================
+//   SUPPORTS
+// ==========================================
+
+
+@supports (display: -webkit-flex) {
+  .supports > .webkit-flex { .show-message-block("supports: -webkit-flex",@color-navy); }
+}
+@supports (display: -moz-flex) {
+    .supports > .moz-flex { .show-message-block("supports: -moz-flex",@color-navy); }
+}
+@supports (display: flex) {
+    .supports > .flex { .show-message-block("supports: flex",@color-navy); }
+}
+
+
+@supports (width: calc(100% - 20px)) {
+    .supports > .calc { .show-message-block("supports: calc",@color-olive); }
+}
+
+@supports (width: 20vw) {
+    .supports > .vw { .show-message-block("supports: vw",@color-maroon); }
+}
+@supports (width: 20vh) {
+    .supports > .vh { .show-message-block("supports: vh",@color-maroon); }
+}
+@supports (font-size: 5vmin) {
+    .supports > .vmin { .show-message-block("supports: vmin",@color-maroon); }
+}
+@supports (font-size: 5vmax) {
+    .supports > .vmax { .show-message-block("supports: vmax",@color-maroon); }
+}

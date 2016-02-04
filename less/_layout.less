@@ -1,0 +1,51 @@
+
+// GENERIC BASE STYLES
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    position: relative;
+}
+
+body {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    background: #FFFFFF;
+}
+
+
+// PAGE
+article {
+    padding: 0.2rem 1rem 1rem;
+}
+
+
+// SECTIONS
+
+hr {
+    margin: 2rem auto;
+    border: none;
+    border-top: 1px dotted @color-silver;
+}
+
+section > div {
+    &:before {
+        position: relative;
+        margin: 0px;
+        padding: 10px 10px;
+        display: block;
+        font-size: inherit;
+        line-height: inherit;
+        font-weight: inherit;
+        text-align: left;
+        pointer-events: none;
+        opacity: 0.9;
+    }
+}
+
+section > div + div {
+    margin-top: 2px;
+}

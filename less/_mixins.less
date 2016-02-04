@@ -1,0 +1,27 @@
+// ==========================================
+//   FUNCTIONS
+// ==========================================
+
+.safe-readable-text-color(@bgcol) when (default()) {
+    // intermediate background
+    color: #666666;
+    mix-blend-mode: multiply;
+}
+.safe-readable-text-color(@bgcol) when (lightness(@bgcol) > 66%) {
+    // light background
+    color: #111111;
+    mix-blend-mode: multiply;
+}
+.safe-readable-text-color(@bgcol) when (lightness(@bgcol) < 33%) {
+    // dark background
+    color: #AAAAAA;
+    mix-blend-mode: screen;
+}
+
+.show-message-block(@msg,@bgcol) {
+    &:before {
+        .safe-readable-text-color(@bgcol);
+        content: @msg;
+    }
+    background: @bgcol;
+}
