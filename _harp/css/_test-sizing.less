@@ -2,57 +2,50 @@
 //   MIN/MAX-WIDTH/HEIGHT
 // ==========================================
 
-// @media only screen and (min-width: 320px) {
-//     .sizing > .min-width-320 { .show-message-block("min-width: 320px",@color-fuchsia); }
-// }
-// @media only screen and (max-width: 320px) {
-//     .sizing > .max-width-320 { .show-message-block("max-width: 320px",@color-olive); }
-// }
-// @media only screen and (min-device-width: 320px) {
-//     .sizing > .min-device-width-320 { .show-message-block("min-device-width: 320px",@color-purple); }
-// }
-// @media only screen and (max-device-width: 320px) {
-//     .sizing > .max-device-width-320 { .show-message-block("max-device-width: 320px",@color-lime); }
-// }
+// ‘min-’ or ‘max-’ prefixes to express "greater or equal to" and "smaller or equal to" constraints
+// NOTICE: `-device` declarations are deprecated
 
-.generate-media-query(320px);
+.sizing > div[class^='min-width'] { .set-color(@color-purple); }
+.sizing > div[class^='max-width'] { .set-color(@color-olive); }
 
-.generate-media-query(@w) when (@w =< 1300px) {
+.sizing > div[class^='min-height'] { .set-color(@color-teal); }
+.sizing > div[class^='max-height'] { .set-color(@color-maroon); }
 
-    @min-width: ~'(min-width: @{w})';
-    @max-width: ~'(max-width: @{w})';
-    @min-device-width: ~'(min-device-width: @{w})';
-    @max-device-width: ~'(max-device-width: @{w})';
+@min-size: 300px;
+@max-size: 1300px;
+
+.batch-generate-min-media-queries(@min-size);
+.batch-generate-max-media-queries(@max-size);
+
+.batch-generate-min-media-queries(@size) when (@size =< @max-size) {
+
+    @min-width: ~'(min-width: @{size})';
+    @min-height: ~'(min-height: @{size})';
+
     @media only screen and @min-width {
-        .sizing > .min-width-@{w} { .show-message-block("min-width: @{w}",@color-fuchsia); }
+        .sizing > .min-width { .set-message("min-width: @{size}"); }
     }
-    @media only screen and @min-device-width {
-        .sizing > .min-device-width-@{w} { .show-message-block("min-device-width: @{w}",@color-purple); }
-    }
-    @media only screen and @max-width {
-        .sizing > .max-width-@{w} { .show-message-block("max-width: @{w}",@color-olive); }
-    }
-    @media only screen and @max-device-width {
-        .sizing > .max-device-width-@{w} { .show-message-block("max-device-width: @{w}",@color-lime); }
-    }
-
-    @min-height: ~'(min-height: @{w})';
-    @max-height: ~'(max-height: @{w})';
-    @min-device-height: ~'(min-device-height: @{w})';
-    @max-device-height: ~'(max-device-height: @{w})';
     @media only screen and @min-height {
-        .sizing > .min-height-@{w} { .show-message-block("min-height: @{w}",@color-teal); }
+        .sizing > .min-height { .set-message("min-height: @{size}"); }
     }
-    @media only screen and @min-device-height {
-        .sizing > .min-device-height-@{w} { .show-message-block("min-device-height: @{w}",@color-blue); }
+    // generate the looping in less
+    .batch-generate-min-media-queries(@size + 10px);
+}
+
+
+.batch-generate-max-media-queries(@size) when (@size >= @min-size) {
+
+    @max-width: ~'(max-width: @{size})';
+    @max-height: ~'(max-height: @{size})';
+
+    @media only screen and @max-width {
+        .sizing > .max-width { .set-message("max-width: @{size}"); }
     }
     @media only screen and @max-height {
-        .sizing > .max-height-@{w} { .show-message-block("max-height: @{w}",@color-maroon); }
-    }
-    @media only screen and @max-device-height {
-        .sizing > .max-device-height-@{w} { .show-message-block("max-device-height: @{w}",@color-orange); }
+        .sizing > .max-height { .set-message("max-height: @{size}"); }
     }
 
+    // generate the looping in less
+    .batch-generate-max-media-queries(@size - 10px);
 
-    .generate-media-query(@w + 10px);
 }

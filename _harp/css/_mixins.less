@@ -18,10 +18,15 @@
     mix-blend-mode: screen;
 }
 
-.show-message-block(@msg,@bgcol) {
+.set-color(@bgcol) {
     &:before {
         .safe-readable-text-color(@bgcol);
-        content: @msg;
     }
     background: @bgcol;
+}
+
+.set-message(@msg) {
+    &:before {
+        content: @msg;
+    }
 }

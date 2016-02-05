@@ -3,30 +3,33 @@
 // ==========================================
 
 
+.supports > .calc { .set-color(@color-green); }
 @supports (width: calc(100% - 20px)) {
-    .supports > .calc { .show-message-block("supports: calc",@color-green); }
+    .supports > .calc { .set-message("supports: calc"); }
 }
 
+.supports > { .webkit-flex, .moz-flex, .flex { .set-color(@color-navy); } }
 @supports (display: -webkit-flex) {
-  .supports > .webkit-flex { .show-message-block("supports: -webkit-flex",@color-navy); }
+  .supports > .webkit-flex { .set-message("supports: -webkit-flex"); }
 }
 @supports (display: -moz-flex) {
-    .supports > .moz-flex { .show-message-block("supports: -moz-flex",@color-navy); }
+    .supports > .moz-flex { .set-message("supports: -moz-flex"); }
 }
 @supports (display: flex) {
-    .supports > .flex { .show-message-block("supports: flex",@color-navy); }
+    .supports > .flex { .set-message("supports: flex"); }
 }
 
 
+.supports > { .vw, .vh, .vmin, .vmax { .set-color(@color-maroon); } }
 @supports (width: 20vw) {
-    .supports > .vw { .show-message-block("supports: vw",@color-maroon); }
+    .supports > .vw { .set-message("supports: vw"); }
 }
 @supports (width: 20vh) {
-    .supports > .vh { .show-message-block("supports: vh",@color-maroon); }
+    .supports > .vh { .set-message("supports: vh"); }
 }
 @supports (font-size: 5vmin) {
-    .supports > .vmin { .show-message-block("supports: vmin",@color-maroon); }
+    .supports > .vmin { .set-message("supports: vmin"); }
 }
 @supports (font-size: 5vmax) {
-    .supports > .vmax { .show-message-block("supports: vmax",@color-maroon); }
+    .supports > .vmax { .set-message("supports: vmax"); }
 }

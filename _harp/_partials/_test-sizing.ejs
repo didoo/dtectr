@@ -1,21 +1,17 @@
 <h2>Sizing</h2>
 
-<h3>width</h3>
+<h3>min</h3>
 <section class="sizing">
-    <% for(var size=300; size<=1300; (size = size + 10)) { %>
-        <div class="min-width-<%= size %>px"></div>
-        <div class="min-device-width-<%= size %>px"></div>
-        <div class="max-width-<%= size %>px"></div>
-        <div class="max-device-width-<%= size %>px"></div>
-    <% } %>
+    <div class="min-width"></div>
+    <!-- <div class="min-device-width"></div> -->
+    <div class="min-height"></div>
+    <!-- <div class="min-device-height"></div> -->
 </section>
 
-<h3>height</h3>
+<h3>max</h3>
 <section class="sizing">
-    <% for(var size=300; size<=1300; (size = size + 10)) { %>
-        <div class="min-height-<%= size %>px"></div>
-        <div class="min-device-height-<%= size %>px"></div>
-        <div class="max-height-<%= size %>px"></div>
-        <div class="max-device-height-<%= size %>px"></div>
-    <% } %>
+    <div class="max-width"></div>
+    <!-- <div class="max-device-width"></div> -->
+    <div class="max-height"></div>
+    <!-- <div class="max-device-height"></div> -->
 </section>

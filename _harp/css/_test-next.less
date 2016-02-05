@@ -1,0 +1,31 @@
+// ==========================================
+//   NEXT & FUTURE
+// ==========================================
+
+
+.next > div[class^='pointer'] { .set-color(@color-red); }
+@media (pointer: none) {
+    .next > .pointer-none { .set-message("pointer: none"); }
+}
+@media (pointer: coarse) {
+    .next > .pointer-coarse { .set-message("pointer: coarse"); }
+}
+@media (pointer: fine) {
+    .next > .pointer-fine { .set-message("pointer: fine"); }
+}
+
+.next > div[class^='hover'] { .set-color(@color-fuchsia); }
+@media (hover) {
+    .next > .hover { .set-message("hover"); }
+}
+
+.next > div[class^='light-level'] { .set-color(@color-lime); }
+@media (light-level: dim) {
+    .next > .light-level-dim { .set-message("light-level: dim"); }
+}
+@media (light-level: normal) {
+    .next > .light-level-normal { .set-message("light-level: normal"); }
+}
+@media (light-level: washed) {
+    .next > .light-level-washed { .set-message("light-level: washed"); }
+}

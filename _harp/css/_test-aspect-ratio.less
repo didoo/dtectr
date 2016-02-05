@@ -2,27 +2,55 @@
 //   ASPECT RATIO
 // ==========================================
 
+.aspect-ratio > div { .set-color(@color-orange); }
+// common ratios for portrait
+@media screen and (min-aspect-ratio: 2/3) {
+    .aspect-ratio > .ratio-2_3 { .set-message("min-aspect-ratio: 2/3"); }
+}
+@media screen and (min-aspect-ratio: 3/4) {
+    .aspect-ratio > .ratio-3_4 { .set-message("min-aspect-ratio: 3/4"); }
+}
+@media screen and (min-aspect-ratio: 9/16) {
+    .aspect-ratio > .ratio-9_16 { .set-message("min-aspect-ratio: 9/16"); }
+}
+@media screen and (min-aspect-ratio: 10/16) {
+    .aspect-ratio > .ratio-10_16 { .set-message("min-aspect-ratio: 10/16"); }
+}
+// common ratios for landscape
 @media screen and (min-aspect-ratio: 3/2) {
-    .aspect-ratio > .ratio-3_2 { .show-message-block("min-aspect-ratio: 3/2",@color-orange); }
+    .aspect-ratio > .ratio-3_2 { .set-message("min-aspect-ratio: 3/2"); }
 }
 @media screen and (min-aspect-ratio: 4/3) {
-    .aspect-ratio > .ratio-4_3 { .show-message-block("min-aspect-ratio: 4/3",@color-orange); }
+    .aspect-ratio > .ratio-4_3 { .set-message("min-aspect-ratio: 4/3"); }
 }
 @media screen and (min-aspect-ratio: 16/9) {
-    .aspect-ratio > .ratio-16_9 { .show-message-block("min-aspect-ratio: 16/9",@color-orange); }
+    .aspect-ratio > .ratio-16_9 { .set-message("min-aspect-ratio: 16/9"); }
 }
 @media screen and (min-aspect-ratio: 16/10) {
-    .aspect-ratio > .ratio-16_10 { .show-message-block("min-aspect-ratio: 16/10",@color-orange); }
+    .aspect-ratio > .ratio-16_10 { .set-message("min-aspect-ratio: 16/10"); }
 }
-@media screen and (min-aspect-ratio: 17/10) {
-    .aspect-ratio > .ratio-17_10 { .show-message-block("min-aspect-ratio: 17/10",@color-orange); }
+// other ratios (which devices?)
+// @media screen and (min-aspect-ratio: 17/10) {
+//     .aspect-ratio > .ratio-17_10 { .set-message("min-aspect-ratio: 17/10"); }
+// }
+// @media screen and (min-aspect-ratio: 19/16) {
+//     .aspect-ratio > .ratio-19_16 { .set-message("min-aspect-ratio: 19/16"); }
+// }
+// @media screen and (min-aspect-ratio: 21/16) {
+//     .aspect-ratio > .ratio-21_16 { .set-message("min-aspect-ratio: 21/16"); }
+// }
+// @media screen and (min-aspect-ratio: 23/16) {
+//     .aspect-ratio > .ratio-23_16 { .set-message("min-aspect-ratio: 23/16"); }
+// }
+
+// DEPRECATED
+// common ratios for portrait
+@media screen and (device-aspect-ratio: 3/2) {
+    .aspect-ratio > .ratio-device_3_2 { .set-message("device-aspect-ratio: 2/3"); }
 }
-@media screen and (min-aspect-ratio: 19/16) {
-    .aspect-ratio > .ratio-19_16 { .show-message-block("min-aspect-ratio: 19/16",@color-orange); }
+@media screen and (device-aspect-ratio: 4/3) {
+    .aspect-ratio > .ratio-device_4_3 { .set-message("device-aspect-ratio: 4/3"); }
 }
-@media screen and (min-aspect-ratio: 21/16) {
-    .aspect-ratio > .ratio-21_16 { .show-message-block("min-aspect-ratio: 21/16",@color-orange); }
-}
-@media screen and (min-aspect-ratio: 23/16) {
-    .aspect-ratio > .ratio-23_16 { .show-message-block("min-aspect-ratio: 23/16",@color-orange); }
+@media screen and (device-aspect-ratio: 9/16) {
+    .aspect-ratio > .ratio-device_16_9 { .set-message("device-aspect-ratio: 16/9"); }
 }

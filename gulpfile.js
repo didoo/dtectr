@@ -1,47 +1,45 @@
+/* jslint node: true */
+/* jshint strict: false */
+
+// ############################################################################################################
+
+// ### DTECTR PROJECT ###
+
+// ############################################################################################################
+
+console.time('Loading plugins and configs');
+
+// ### PACKAGES ###
+// ---------------------------------------
 var gulp        = require('gulp');
-// var browserSync = require('browser-sync').create();
 var browserSync = require('browser-sync');
+var ghpages     = require('gulp-gh-pages');
 var exec        = require('child_process').exec;
+var gutil       = require('gulp-util');
 // var harp        = require('harp');
 var less        = require('gulp-less');
 var path        = require('path');
 var sass        = require('gulp-sass');
-var ejs         = require('gulp-ejs');
-var gutil       = require('gulp-util');
+var sequence    = require('run-sequence');
+var watch       = require('gulp-watch');
 
-// Serve the Harp Site from the public directory
-// gulp.task('serve-xxx', function () {
-//     harp.server(
-//         // projectPath
-//         path.join(__dirname, 'public'),
-//         // options
-//         {
-//             port: 9000
-//         },
-//         // callback
-//         function () {
-//
-//             browserSync({
-//                 proxy: "localhost:9000",
-//                 open: false,
-//                 notify: { // hide the notifications
-//                     styles: ['position: absolute','z-index: -9999','opacity: 0']
-//                 }
-//             });
-//
-//             gulp.watch(["*.css", "*.sass", "*.scss", "*.less"], function () {
-//                 browserSync.reload("main.css", {stream: true});
-//             });
-//
-//             gulp.watch(["*.html", "*.ejs", "*.jade", "*.js", "*.json", "*.md"], function () {
-//                 browserSync.reload();
-//             });
-//
-//         } // end callback
-//     ) // end server
-// });
+// debugging tools
+// var filelog       = require('gulp-filelog'); // use: .pipe(filelog())
+// var using         = require('gulp-using');   // use: .pipe(using({ prefix:'Using', color:'blue' }))
+// var debug         = require('gulp-debug');   // use: .pipe(debug())
+// var tap           = require('gulp-tap');     // use: .pipe(tap(function(file,t) { console.log(''lorem'); }))
 
-// Compile Less/Sass into CSS & auto-inject into browsers
+// ### CONFIGURATIONS ###
+// ---------------------------------------
+// var _folder_source   = '_harp/';
+// var _folder_public   = 'public/';
+
+console.timeEnd('Loading plugins and configs');
+
+// ############################################################################################################
+
+// ### CSS FILES ###
+// ---------------------------------------
 gulp.task("less", function () {
   return gulp.src("_harp/css/style.less")
     .pipe(less())
@@ -54,24 +52,26 @@ gulp.task("sass", function() {
         .pipe(gulp.dest("public/css"))
         .pipe(browserSync.stream());
 });
-gulp.task("templates", function() {
-    return gulp.src("_harp/**/*.ejs")
-    	.pipe(ejs().on("error", gutil.log))
-    	.pipe(gulp.dest("public"));
-});
 
+// ### TEMPLATE FILES ###
+// ---------------------------------------
+// gulp.task("templates", function() {
+//     return gulp.src("_harp/**/*.ejs")
+//     	.pipe(ejs().on("error", gutil.log))
+//     	.pipe(gulp.dest("public"));
+// });
+
+// ### BUILD THE WEBSITE (via harp) ###
+// ---------------------------------------
 gulp.task('build', function (done) {
     exec('harp compile _harp ./public', {stdio: 'inherit'})
     .on('close', done)
 });
 
-// Static Server + watching less/sass/html files
-gulp.task('serve', ['build'], function() {
-
-    browserSync.init({
-        server: "public"
-    });
-
+// ### WATCH FILES ###
+// ---------------------------------------
+gulp.task('watch', function (cb) {
+    // NOTICE: this is the (faster) 'gulp-watch'
     // gulp.watch("_harp/css/*.sass", ['sass']);
     // gulp.watch("_harp/css/*.less", ['less']);
     // gulp.watch("_harp/**/*.ejs", ['templates']);
@@ -80,5 +80,36 @@ gulp.task('serve', ['build'], function() {
     gulp.watch("public/*.html").on('change', browserSync.reload);
 });
 
+// ### LOCAL SERVER ###
+// ---------------------------------------
+gulp.task('serve', function() {
+    browserSync.init({
+        server: "public"
+    });
+});
 
-gulp.task('default', ['serve']);
+ // ### PUBLISH (to gh-pages) ###
+ // ---------------------------------------
+gulp.task('publish', function () {
+  return gulp.src("./public/**/*")
+    .pipe(ghpages())
+});
+
+
+// ############################################################################################################
+
+// use the option "--verbose" to have a more extended logging
+
+// The default task = used for development
+gulp.task('default', function () {
+    return sequence(
+        'build','serve','watch'
+    );
+});
+
+// The deploy task = used to build and publish the pages
+gulp.task('deploy', function () {
+    return sequence(
+        'build','publish'
+    );
+});

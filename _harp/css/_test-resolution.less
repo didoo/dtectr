@@ -2,21 +2,23 @@
 //   RESOLUTION
 // ==========================================
 
+.resolution > div { .set-color(@color-yellow); }
+
 @media only screen and (-webkit-min-device-pixel-ratio: 1) {
-    .resolution > .min-device-pixel-ratio-1 { .show-message-block("-webkit-min-device-pixel-ratio: 1",@color-yellow); }
+    .resolution > .min-device-pixel-ratio-1 { .set-message("-webkit-min-device-pixel-ratio: 1"); }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.25) {
-    .resolution > .min-device-pixel-ratio-1_25 { .show-message-block("-webkit-min-device-pixel-ratio: 1.25",@color-yellow); }
+    .resolution > .min-device-pixel-ratio-1_25 { .set-message("-webkit-min-device-pixel-ratio: 1.25"); }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-    .resolution > .min-device-pixel-ratio-2 { .show-message-block("-webkit-min-device-pixel-ratio: 2",@color-yellow); }
+    .resolution > .min-device-pixel-ratio-2 { .set-message("-webkit-min-device-pixel-ratio: 2"); }
 }
 @media only screen and (min-resolution: 120dpi) {
-    .resolution > .min-resolution-120dpi { .show-message-block("min-resolution: 120dpi",@color-yellow); }
+    .resolution > .min-resolution-120dpi { .set-message("min-resolution: 120dpi"); }
 }
 @media only screen and (min-resolution: 192dpi) {
-    .resolution > .min-resolution-192dpi { .show-message-block("min-resolution: 192dpi",@color-yellow); }
+    .resolution > .min-resolution-192dpi { .set-message("min-resolution: 192dpi"); }
 }
 @media only screen and (min-resolution: 1.25dppx) {
-    .resolution > .min-resolution-125dppx { .show-message-block("min-resolution: 1.25dppx",@color-yellow); }
+    .resolution > .min-resolution-125dppx { .set-message("min-resolution: 1.25dppx"); }
 }
