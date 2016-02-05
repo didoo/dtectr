@@ -3,6 +3,10 @@
 // ==========================================
 
 
+@supports (width: calc(100% - 20px)) {
+    .supports > .calc { .show-message-block("supports: calc",@color-green); }
+}
+
 @supports (display: -webkit-flex) {
   .supports > .webkit-flex { .show-message-block("supports: -webkit-flex",@color-navy); }
 }
@@ -13,10 +17,6 @@
     .supports > .flex { .show-message-block("supports: flex",@color-navy); }
 }
 
-
-@supports (width: calc(100% - 20px)) {
-    .supports > .calc { .show-message-block("supports: calc",@color-olive); }
-}
 
 @supports (width: 20vw) {
     .supports > .vw { .show-message-block("supports: vw",@color-maroon); }

@@ -1,0 +1,32 @@
+{
+  "name": "dtectr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "harp_compile": "harp compile _harp ./public",
+    "harp_serve": "harp server ./public --port 9000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://didoo@github.com/didoo/dtectr.git"
+  },
+  "keywords": [
+    "css"
+  ],
+  "author": "Cristiano Rastelli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/didoo/dtectr/issues"
+  },
+  "homepage": "https://github.com/didoo/dtectr#readme",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.0",
+    "gulp-ejs": "^2.0.0",
+    "gulp-less": "^3.0.5",
+    "gulp-sass": "^2.2.0",
+    "gulp-util": "^3.0.7",
+    "harp": "^0.20.1"
+  }
+}
