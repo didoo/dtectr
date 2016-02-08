@@ -65,7 +65,7 @@ gulp.task("sass", function() {
 // ---------------------------------------
 gulp.task('build', function (done) {
     exec('harp compile _harp ./public', {stdio: 'inherit'})
-    .on('close', done)
+    .on('close', done);
 });
 
 // ### WATCH FILES ###
